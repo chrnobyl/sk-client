@@ -1,11 +1,11 @@
 let count = 0
+let ipAddress = ""
 
 function captureData(){
   getIp()
   .then(data => {
-    let ipAddress = data.ip
+    return ipAddress = data.ip
   })
-  debugger
 
   count = count + 1
   function inFrame() {
@@ -26,7 +26,7 @@ const baseUrl = 'http://localhost:3000/api/v1/tags'
 function createTag(tag){
   return fetch(`${baseUrl}`, {
     method: 'POST',
-    headers: this.headers(),
+    headers: headers(),
     body: JSON.stringify({
       tag: {
         title: tag.title,
@@ -36,12 +36,12 @@ function createTag(tag){
         remoteip: tag.remoteip
       }
     })
-  }).then(res => res.json() )
+  }).then(res => res.json())
 }
 
 function getIp(){
-  return fetch('//freegeoip.net/json/?callback=?')
-    .then( res => res.json() )
+  return fetch('https://ipapi.co/json/')
+    .then(res => res.json())
 }
 
 function headers(){
